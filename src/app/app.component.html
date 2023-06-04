@@ -1,0 +1,71 @@
+<!-- HEADER -->
+<header id="header">
+  <button mat-raised-button (click)="openDialog()">Add Coin</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button mat-raised-button (click)="getHistoricalData()">Get Extra Data</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button mat-raised-button (click)="saveCurrentState()">Save Current</button>
+  <hr>
+  Hi {{userName}}
+
+  <button mat-raised-button (click)="stopAudio()">Stop Audio</button>
+  <button mat-raised-button (click)="alllowAudio()">Allow Audio</button>
+  <button mat-raised-button (click)="pauseAudio()">Pause Audio</button>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before">
+    <button (click)="saveCurrentState()" mat-menu-item>
+      <mat-icon>login</mat-icon>
+
+      <span>Login</span>
+    </button>
+
+    <button (click)="saveCurrentState()" mat-menu-item>
+      <mat-icon>app_registration</mat-icon>
+      <span>signup</span>
+    </button>
+
+    <button (click)="logout()" mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      <span>logout</span>
+    </button>
+
+  </mat-menu>
+
+</header>
+
+<router-outlet></router-outlet>
+
+
+<gridster [options]="options" style="top: 9px; min-height: 695px;padding: 10px;">
+
+  <gridster-item class="gridster-item-class" [item]="item" *ngFor="let item of dashboard">
+
+
+    <div class="item-buttons">
+      <button mat-icon-button md-raised-button class="drag-handler">
+        <mat-icon>open_with</mat-icon>
+      </button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button id="cross-buttons" mat-icon-button md-raised-button class="remove-button"
+        (click)="removeItem($event, item)" (touchstart)="removeItem($event, item)" mdTooltip="Remove">
+        <mat-icon style="font-weight: bolder;">clear</mat-icon>
+      </button>
+
+      <mat-label>{{cryptoDetailsInDict[item.coinCode.toUpperCase()]['name']  }}</mat-label>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-label>{{ item.priceUnit.toUpperCase()  }}</mat-label>
+
+    </div>
+
+    <div (mousedown)="$event.stopPropagation()" (touchstart)="$event.stopPropagation()">
+      <app-each-coin [childInputData]="item" [wazirxData]='apiResponse'
+        [detailForIdFromLocalFile]="cryptoDetailsInDict[item.coinCode.toUpperCase()]">
+      </app-each-coin>
+
+    </div>
+
+  </gridster-item>
+</gridster>

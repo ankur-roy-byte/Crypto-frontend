@@ -1,0 +1,179 @@
+<div>
+
+  <div style="  width: 70%;  float: left;  " class="whiteBackground">
+
+    <div class="marginDiv">
+      <span class="sell fontlarger">
+        {{coinDetails['buy']}}
+      </span>&nbsp;&nbsp;
+      <span class="sellTExt fontlarger">
+        {{coinDetails['sell']}}
+      </span>
+    </div>
+
+    <!-- <div class="marginDiv">
+      <span class="buy fontlarger">
+        Buy :
+      </span>
+      <span class="buyTExt fontlarger">
+        {{coinDetails['buy']}}
+      </span>
+    </div> -->
+
+    <div class="marginDiv">
+      <span class="myprice fontlarger">
+        My Price :
+      </span>
+      <span *ngIf="!changeMode" class="mypriceText fontlarger">
+
+        {{childInputData['myPrice']}}
+      </span>
+      <span *ngIf="changeMode" class="myprice fontlarger">
+        <input type="number" [(ngModel)]="childInputData['myPrice']" value="childInputData['myPrice']"
+          placeholder="{{childInputData['myPrice']}}">
+      </span>
+
+      <!-- {{changeMode}} -->
+      <span class="myprice fontlarger">
+        <button *ngIf="!changeMode" (click)="inputValueChanged()"> Change </button>
+        <button *ngIf="changeMode" (click)="SaveInput()"> Save </button>
+
+      </span>
+    </div>
+
+    <div class="marginDiv">
+      <span class="profit fontlarger">
+        Profit/Loss :
+      </span>
+      <span class="profitText fontxxlarge fontBold"
+        [ngClass]=" (coinDetails['sell'] - childInputData['myPrice'] ) > 0 ? 'GREEN' :'RED' ">
+        {{ ((coinDetails['buy'] - childInputData['myPrice'] ) / childInputData['myPrice'] * 100).toFixed(5) }} %
+      </span>
+    </div>
+
+    <div class="marginDiv" [ngClass]=" (coinDetails['sell'] <= childInputData['buySoundPrice'] )   ? 'soundComingFrom' :'' ">
+      <span class="myprice fontlarger">
+        Buy Price :
+      </span>
+      <span *ngIf="!buySoundPricechangeMode" class="mypriceText fontlarger">
+
+        {{childInputData['buySoundPrice']}}
+      </span>
+      <span *ngIf="buySoundPricechangeMode" class="myprice fontlarger">
+        <input type="number" [(ngModel)]="childInputData['buySoundPrice']" value="childInputData['buySoundPrice']"
+          placeholder="{{childInputData['buySoundPrice']}}">
+      </span>
+
+      <!-- {{changeMode}} -->
+      <span class="myprice fontlarger">
+        <button *ngIf="!buySoundPricechangeMode" (click)="inputValueChangedbuySoundPrice()"> Change </button>
+        <button *ngIf="buySoundPricechangeMode" (click)="SaveInputbuySoundPrice()"> Save </button>
+
+      </span>
+    </div>
+
+
+    <div class="marginDiv" [ngClass]=" (coinDetails['buy'] >= childInputData['sellSoundPrice'] )  ? 'soundComingFrom' :'' " >
+      <span class="myprice fontlarger">
+        Sell Price :
+      </span>
+      <span *ngIf="!sellSoundPricechangeMode" class="mypriceText fontlarger">
+
+        {{childInputData['sellSoundPrice']}}
+      </span>
+      <span *ngIf="sellSoundPricechangeMode" class="myprice fontlarger">
+        <input type="number" [(ngModel)]="childInputData['sellSoundPrice']" value="childInputData['sellSoundPrice']"
+          placeholder="{{childInputData['sellSoundPrice']}}">
+      </span>
+
+      <!-- {{changeMode}} -->
+      <span class="myprice fontlarger">
+        <button *ngIf="!sellSoundPricechangeMode" (click)="inputValueChangedsellSoundPrice()"> Change </button>
+        <button *ngIf="sellSoundPricechangeMode" (click)="SaveInputsellSoundPrice()"> Save </button>
+
+      </span>
+    </div>
+    <div class="marginDiv">
+      <span class="myprice fontlarger">
+        Buy % :
+      </span>
+      <span *ngIf="!buySoundPercentchangeMode" class="mypriceText fontlarger">
+
+        {{childInputData['buySoundPercent']}}
+      </span>
+      <span *ngIf="buySoundPercentchangeMode" class="myprice fontlarger">
+        <input type="number" [(ngModel)]="childInputData['buySoundPercent']" value="childInputData['buySoundPercent']"
+          placeholder="{{childInputData['buySoundPercent']}}">
+      </span>
+
+      <!-- {{changeMode}} -->
+      <span class="myprice fontlarger">
+        <button *ngIf="!buySoundPercentchangeMode" (click)="inputValueChangedbuySoundPercent()"> Change </button>
+        <button *ngIf="buySoundPercentchangeMode" (click)="SaveInputbuySoundPercent()"> Save </button>
+
+      </span>
+    </div>
+
+
+    <div class="marginDiv">
+      <span class="myprice fontlarger">
+        Sell % :
+      </span>
+      <span *ngIf="!sellSoundPercentchangeMode" class="mypriceText fontlarger">
+
+        {{childInputData['sellSoundPercent']}}
+      </span>
+      <span *ngIf="sellSoundPercentchangeMode" class="myprice fontlarger">
+        <input type="number" [(ngModel)]="childInputData['sellSoundPercent']" value="childInputData['sellSoundPercent']"
+          placeholder="{{childInputData['sellSoundPercent']}}">
+      </span>
+
+      <!-- {{changeMode}} -->
+      <span class="myprice fontlarger">
+        <button *ngIf="!sellSoundPercentchangeMode" (click)="inputValueChangedsellSoundPercent()"> Change </button>
+        <button *ngIf="sellSoundPercentchangeMode" (click)="SaveInputsellSoundPercent()"> Save </button>
+
+      </span>
+    </div>
+    <hr>
+    <div class="marginDiv" *ngIf="showHistoricalData">
+      <span class="myprice fontlarger">
+        Trading Volume 24h :
+      </span>
+      <span class="mypriceText fontlarger">
+        {{eachHistoricalData['data'][detailForId.id]['quote']['USD']['volume_24h'].toFixed(5) }}
+      </span>
+    </div>
+
+
+    <div class="marginDiv" *ngIf="showHistoricalData">
+      <span class="myprice fontlarger">
+        Price Change % 24h :
+      </span>
+      <span class="mypriceText fontlarger">
+        {{eachHistoricalData['data'][detailForId.id]['quote']['USD']['percent_change_24h']}}
+      </span>
+    </div>
+
+    <div class="marginDiv" *ngIf="showHistoricalData">
+      <span class="myprice fontlarger">
+        Market Cap :
+      </span>
+      <span class="mypriceText fontlarger">
+        {{eachHistoricalData['data'][detailForId.id]['quote']['USD']['market_cap'].toFixed(5)}}
+      </span>
+    </div>
+
+
+  </div>
+
+  <br>
+
+  <div id="historyData" style="float: right; width: 30%;  overflow: scroll;  max-height: 47em;">
+
+    <ul *ngFor="let item of historyData;"> {{item}} </ul>
+
+
+
+  </div>
+</div>

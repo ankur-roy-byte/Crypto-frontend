@@ -1,0 +1,68 @@
+<button mat-button class="close-icon" [mat-dialog-close]="true">
+  <mat-icon>close</mat-icon>
+</button>
+<h1 mat-dialog-title>Enter Coin Details</h1>
+
+
+<form #heroForm="ngForm">
+  <div mat-dialog-content>
+
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label for="name">Coin Code</mat-label>
+        <input id="name" name="name" class="form-control" required minlength="3" matInput [(ngModel)]="data.coinCode"
+          #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+
+          <div *ngIf="name.errors?.required">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors?.minlength">
+            Name must be at least 3 characters long.
+          </div>
+
+
+        </div>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label for="name">Your Price</mat-label>
+        <input id="name" name="PRICE" class="form-control" required matInput [(ngModel)]="data.yourPrice"
+          #PRICE="ngModel">
+        <div *ngIf="PRICE.invalid && (PRICE.dirty || PRICE.touched)" class="alert">
+
+          <div *ngIf="PRICE.errors?.required">
+            Name is required.
+          </div>
+          <div *ngIf="PRICE.errors?.minlength">
+            Name must be at least 3 characters long.
+          </div>
+
+
+        </div>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group">
+      <mat-label for="currency">Currency</mat-label>
+      <mat-select id="currency" name="currency" required [(ngModel)]="currentCurrency" #currency="ngModel">
+        <mat-option *ngFor="let p of CURRENCY" [value]="p">{{p}}</mat-option>
+      </mat-select>
+
+      <div *ngIf="currency.errors && currency.touched" class="alert">
+        <div *ngIf="currency.errors.required">Power is required.</div>
+      </div>
+    </div>
+
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button type="submit" [disabled]="heroForm.invalid" mat-button (click)="OkayClicked()" cdkFocusInitial>Ok</button>
+  </div>
+</form>

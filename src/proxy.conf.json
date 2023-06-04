@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://api.wazirx.com/api/v2/tickers",
+      "secure": false
+    }
+  }
