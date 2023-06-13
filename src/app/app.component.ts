@@ -335,7 +335,7 @@ export class LoginRegisterDialogueComponent {
       });
 
     }, (error: {}) => {
-      this.registerMessage = "INVALID"
+      // this.registerMessage = "INVALID"
       // Object.values(error['error'])[0].toString()
     })
   }
