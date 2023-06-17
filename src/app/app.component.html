@@ -8,9 +8,9 @@
   <hr>
   Hi {{userName}}
 
-  <button mat-raised-button (click)="stopAudio()">Stop Audio</button>
+  <!-- <button mat-raised-button (click)="stopAudio()">Stop Audio</button> -->
   <button mat-raised-button (click)="alllowAudio()">Allow Audio</button>
-  <button mat-raised-button (click)="pauseAudio()">Pause Audio</button>
+  <!-- <button mat-raised-button (click)="pauseAudio()">Pause Audio</button> -->
 
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="">
     <mat-icon>more_vert</mat-icon>
@@ -31,15 +31,13 @@
       <mat-icon>logout</mat-icon>
       <span>logout</span>
     </button>
-
   </mat-menu>
-
 </header>
 
 <router-outlet></router-outlet>
 
 
-<gridster [options]="options" style="top: 9px; min-height: 695px;padding: 10px;">
+<gridster [options]="options" style="top: 120px; min-height: 695px;padding: 10px;">
 
   <gridster-item class="gridster-item-class" [item]="item" *ngFor="let item of dashboard">
 

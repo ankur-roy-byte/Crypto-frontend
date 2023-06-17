@@ -25,7 +25,8 @@ export class WazirxServiceService {
 
   private currentId: number = 0;
 
-  private baseUrl = 'https://crypto-backend-api.herokuapp.com/'
+   baseUrl = 'https://cryptobackend-iota.vercel.app/api/getAnalyticalData'
+ // private baseUrl = 'https://crypto-backend-api.herokuapp.com/'
   // private baseUrl = 'http://localhost:8000/'
   dashboard: Array<GridsterItem>;
   constructor(private http: HttpClient) {
@@ -50,7 +51,7 @@ export class WazirxServiceService {
     this.playAudio = false
   }
   alllowAudio() {
-    this.playAudio = true
+   //  this.playAudio = true
   }
   playBuyAudio() {
     let audio = new Audio();
@@ -58,7 +59,7 @@ export class WazirxServiceService {
     audio.src = "../../assets/audio/buy.mp3";
     audio.load();
     if (this.playAudio && audio.paused) {
-      audio.play();
+    //  audio.play();
       // audio.
 
     }
@@ -82,7 +83,7 @@ export class WazirxServiceService {
     audio.src = "../../assets/audio/sell.mp3";
     audio.load();
     if (this.playAudio) {
-      audio.play();
+     // audio.play();
 
     }
   }
@@ -177,7 +178,7 @@ export class WazirxServiceService {
   }
 
   getWazirxData() {
-    let url = this.baseUrl + 'api/getWazirxData'
+    let url = this.baseUrl + '  '
     return this.http.get(url);
 
 
@@ -222,10 +223,15 @@ export class WazirxServiceService {
 
     const headers = { 'Authorization': 'Token ' + auth_token }
 
-    let url = this.baseUrl + 'api/profile/?email=' + email
+    let url = this.baseUrl + 'api/getAnalyticalData/?email=' + email
     return this.http.get<any>(url, { headers })
 
+    // let url = this.baseUrl + 'api/getWazirxData/?email=' + email
+    // return this.http.get<any>(url, { headers })
+
   }
+
+  //api/getWazirxData
 
   putUserWidgets(username: any = this.getusername(), email: any = this.getemail()) {
     let auth_token: any
