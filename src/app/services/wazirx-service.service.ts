@@ -25,7 +25,11 @@ export class WazirxServiceService {
 
   private currentId: number = 0;
 
-   baseUrl = 'https://cryptobackend-iota.vercel.app/api/getAnalyticalData'
+
+  private baseUrl = 'https://cryptobackend-fop5d5l7i-kumaramrit38.vercel.app/'
+ //  baseUrl = 'https://cryptobackend-iota.vercel.app/api/getAnalyticalData'
+ //  baseUrl = ' https://crypto-backend-vercel-ankur-roy-byte.vercel.app'
+  // baseUrl ='https://cryptobackend-fop5d5l7i-kumaramrit38.vercel.app/'
  // private baseUrl = 'https://crypto-backend-api.herokuapp.com/'
   // private baseUrl = 'http://localhost:8000/'
   dashboard: Array<GridsterItem>;
@@ -178,7 +182,7 @@ export class WazirxServiceService {
   }
 
   getWazirxData() {
-    let url = this.baseUrl + '  '
+    let url = this.baseUrl + 'api/getAnalyticalData'
     return this.http.get(url);
 
 
