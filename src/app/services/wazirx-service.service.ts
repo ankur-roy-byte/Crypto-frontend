@@ -26,10 +26,12 @@ export class WazirxServiceService {
   private currentId: number = 0;
 
 
-  private baseUrl = 'https://cryptobackend-fop5d5l7i-kumaramrit38.vercel.app/'
+
+
+ // private baseUrl = 'https://cryptobackend-fop5d5l7i-kumaramrit38.vercel.app/'
  //  baseUrl = 'https://cryptobackend-iota.vercel.app/api/getAnalyticalData'
  //  baseUrl = ' https://crypto-backend-vercel-ankur-roy-byte.vercel.app'
-  // baseUrl ='https://cryptobackend-fop5d5l7i-kumaramrit38.vercel.app/'
+  baseUrl ='https://cryptobackend-fop5d5l7i-kumaramrit38.vercel.app/'
  // private baseUrl = 'https://crypto-backend-api.herokuapp.com/'
   // private baseUrl = 'http://localhost:8000/'
   dashboard: Array<GridsterItem>;
@@ -55,7 +57,7 @@ export class WazirxServiceService {
     this.playAudio = false
   }
   alllowAudio() {
-   //  this.playAudio = true
+     this.playAudio = true
   }
   playBuyAudio() {
     let audio = new Audio();
@@ -63,7 +65,7 @@ export class WazirxServiceService {
     audio.src = "../../assets/audio/buy.mp3";
     audio.load();
     if (this.playAudio && audio.paused) {
-    //  audio.play();
+      audio.play();
       // audio.
 
     }

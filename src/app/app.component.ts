@@ -157,9 +157,6 @@ export class AppComponent {
   // }
 
   ngOnInit() {
-
-
-
   }
   ngAfterViewInit() {
     this.addItemEvent = this.wazirxServiceService.getUserWidgets().subscribe((data: any) => {
@@ -274,7 +271,7 @@ export class LoginRegisterDialogueComponent {
   registerMessage: any;
 
   constructor(
-    private formBuilder: FormBuilder, private route: ActivatedRoute, private wazirxServiceService: WazirxServiceService
+    private formBuilder: FormBuilder,private route: ActivatedRoute, private wazirxServiceService: WazirxServiceService,public dialog: MatDialog
 
   ) {
     this.loginform = this.formBuilder.group({
@@ -295,6 +292,7 @@ export class LoginRegisterDialogueComponent {
   login() {
     this.wazirxServiceService.login(this.username, this.password).subscribe((data) => {
       this.wazirxServiceService.setusername(this.username);
+      this.wazirxServiceService.loginSuccessEventEmit();
       if (data.hasOwnProperty('token')) {
         this.loginmessage = 'Login Successful'
         let token = data['token']
@@ -319,6 +317,7 @@ export class LoginRegisterDialogueComponent {
       })
 
     })
+    this.dialog.closeAll();
   }
 
 
@@ -338,6 +337,7 @@ export class LoginRegisterDialogueComponent {
       // this.registerMessage = "INVALID"
       // Object.values(error['error'])[0].toString()
     })
+    this.dialog.closeAll();
   }
 
 
